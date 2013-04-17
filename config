@@ -117,7 +117,9 @@ bindsym $mod+Shift+C reload
 bindsym $mod+Shift+R restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+E exit
-
+# Scratchpad
+bindsym $mod+Shift+z move scratchpad
+bindsym $mod+z scratchpad show
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
@@ -179,13 +181,16 @@ for_window [title="^Hotot$"] floating enable
 for_window [title="^Загрузки$"] floating enable
 for_window [title="^Download$"] floating enable
 for_window [class="Skype"] move workspace 1
+for_window [title="kazekage.kun - Skype™"] floating enable
 for_window [title="^qutim$"] move workspace 1
-for_window [title="Настройки QUtim"] floating ebable
+for_window [title="Настройки qutIM$"] floating ebable
 for_window [class="^Firefox$"] move workspace 2
 for_window [class="^Firefox$"] border none
 for_window [class="^Thunderbird$"] move workspace 3
 for_window [class="^Thunderbird$"] border none
-for_window [class="^Opera$"] move workspace 2
+for_window [title="Настройки Thunderbird"] floating enable
+for_window [class="^Opera$"] border none
+
 
 
 #autostart
@@ -195,3 +200,5 @@ exec --no-startup-id skype
 exec --no-startup-id gnome-terminal
 exec --no-startup-id firefox
 exec --no-startup-id thunderbird
+exec --no-startup-id nvidia-settings --load-config-only
+exec feh --bg-scale /home/gaara/Изображения/Below_Clouds_by_kobinho.jpg
