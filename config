@@ -182,7 +182,6 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
     tray_output xinerama-0
-    #status_command i3status -c ~/.i3/i3statusconf 
     status_command python3 ~/.i3/status.py
     font pango:DejaVu Ubuntu Mono Bold 9
 }

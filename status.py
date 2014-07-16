@@ -72,10 +72,6 @@ status.register("network",
     interface="wlan0",
     format_up="wlan0: {v4cidr}",)
 
-status.register("network",
-    interface="usb0",
-    format_up="usb0: {v4cidr}",)
-
 # Has all the options of the normal network and adds some wireless specific things
 # like quality and network names.
 #
