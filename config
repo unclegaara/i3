@@ -9,24 +9,24 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
+force_xinerama yes
 set $mod Mod4
-exec twmnd
 exec setxkbmap "us,ru" ",winkeys" "grp:ctrl_shift_toggle"
-force_xinerama  yes
-
 # font for window titles. ISO 10646 = Unicode
 font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-font pango:DejaVu Ubuntu Mono Bold 8
+font pango:DejaVu Ubuntu Mono Bold 9
 # Lock screen
-bindsym $mod+l exec i3lock -c 000000
+bindsym $mod+b exec i3lock -c 000000 -n
+#bindsym $mod+b exec /home/gaara/.i3/screen_lock.sh
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-#Amixer
-bindsym $mod+KP_Add exec amixer -c 0 sset PCM 5+
-bindsym $mod+KP_Subtract exec amixer -c 0 sset PCM 5-
-
+# class                 border  backgr. text    indicator
+ client.focused          #4c7899 #1560bd #ffffff #2e9ef4
+ client.focused_inactive #1560bd #666666 #ffffff #484e50
+ client.unfocused        #1560bd #222222 #888888 #292d2e
+ client.urgent           #2f343a #900000 #ffffff #900000
 
 # start a terminal
 bindsym $mod+Return exec gnome-terminal
@@ -37,10 +37,16 @@ bindsym $mod+Shift+Q kill
 # start dmenu (a program launcher)
 bindsym $mod+d exec dmenu_run
 
+# change border style
+bindsym $mod+t border toggle
+
+# focus follow mouse
+focus_follows_mouse yes
+
 # change focus
 bindsym $mod+j focus left
 bindsym $mod+k focus down
-# bindsym $mod+l focus up
+bindsym $mod+l focus up
 bindsym $mod+semicolon focus right
 
 # alternatively, you can use the cursor keys:
@@ -111,6 +117,18 @@ bindsym $mod+Shift+asterisk move workspace 8
 bindsym $mod+Shift+parenleft move workspace 9
 bindsym $mod+Shift+parenright move workspace 10
 
+## Worksapces
+#workspace 1 output xinerama-0
+#workspace 2 output xinerama-0
+#workspace 3 output xinerama-0
+#workspace 4 output xinerama-0
+#workspace 5 output xinerama-0
+#workspace 6 output xinerama-1
+#workspace 7 output xinerama-1
+#workspace 8 output xinerama-1
+#workspace 9 output xinerama-1
+#workspace 10 output xinerama-1
+
 # reload the configuration file
 bindsym $mod+Shift+C reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -128,30 +146,30 @@ mode "resize" {
         # when pressing left, the window is resized so that it has
         # more space on its left
 
-bindsym j resize shrink left 10 px or 10 ppt
-bindsym Shift+J resize grow   left 10 px or 10 ppt
+bindsym j resize shrink left 5 px or 5 ppt
+bindsym Shift+J resize grow   left 5 px or 5 ppt
 
-bindsym k resize shrink down 10 px or 10 ppt
-bindsym Shift+K resize grow   down 10 px or 10 ppt
+bindsym k resize shrink down 5 px or 5 ppt
+bindsym Shift+K resize grow   down 5 px or 5 ppt
 
-bindsym l resize shrink up 10 px or 10 ppt
-bindsym Shift+L resize grow   up 10 px or 10 ppt
+bindsym l resize shrink up 5 px or 5 ppt
+bindsym Shift+L resize grow   up 5 px or 5 ppt
 
-bindsym semicolon resize shrink right 10 px or 10 ppt
-bindsym Shift+colon resize grow   right 10 px or 10 ppt
+bindsym semicolon resize shrink right 5 px or 5 ppt
+bindsym Shift+colon resize grow   right 5 px or 5 ppt
 
         # same bindings, but for the arrow keys
-bindsym Left resize shrink left 10 px or 10 ppt
-bindsym Shift+Left resize grow   left 10 px or 10 ppt
+bindsym Left resize shrink left 5 px or 5 ppt
+bindsym Shift+Left resize grow   left 5 px or 5 ppt
 
-bindsym Down resize shrink down 10 px or 10 ppt
-bindsym Shift+Down resize grow   down 10 px or 10 ppt
+bindsym Down resize shrink down 5 px or 5 ppt
+bindsym Shift+Down resize grow   down 5 px or 5 ppt
 
-bindsym Up resize shrink up 10 px or 10 ppt
-bindsym Shift+Up resize grow   up 10 px or 10 ppt
+bindsym Up resize shrink up 5 px or 5 ppt
+bindsym Shift+Up resize grow   up 5 px or 5 ppt
 
-bindsym Right resize shrink right 10 px or 10 ppt
-bindsym Shift+Right resize grow   right 10 px or 10 ppt
+bindsym Right resize shrink right 5 px or 5 ppt
+bindsym Shift+Right resize grow   right 5 px or 5 ppt
 
         # back to normal: Enter or Escape
 bindsym Return mode "default"
@@ -163,7 +181,9 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-    status_command i3status -c ~/.i3/i3statusconf 
+    tray_output xinerama-0
+    #status_command i3status -c ~/.i3/i3statusconf 
+    status_command python3 ~/.i3/status.py
     font pango:DejaVu Ubuntu Mono Bold 9
 }
 
@@ -171,7 +191,6 @@ bar {
 #Apps to workspaces
 
 for_window [title="^Load Media$"] floating enable
-for_window [title="Настройки Firefox"] floating enable
 for_window [title="^feh"] floating enable
 for_window [title="^Volume Control$"] floating enable
 for_window [title="^Options$"] floating enable
@@ -181,24 +200,24 @@ for_window [title="^Hotot$"] floating enable
 for_window [title="^Загрузки$"] floating enable
 for_window [title="^Download$"] floating enable
 for_window [class="Skype"] move workspace 1
-for_window [title="kazekage.kun - Skype™"] floating enable
-for_window [title="^qutim$"] move workspace 1
-for_window [title="Настройки qutIM$"] floating ebable
-for_window [class="^Firefox$"] move workspace 2
-for_window [class="^Firefox$"] border none
-for_window [class="^Thunderbird$"] move workspace 3
-for_window [class="^Thunderbird$"] border none
+for_window [class="Pidgin"] move workspace 2; border none
+for_window [class="Firefox"] move workspace 3; border none
+for_window [class="Chromium-browser"] border none
+for_window [class="Gnome-terminal"] border none
+for_window [title="^Mozilla Thunderbird"] move workspace 2
+for_window [title="Настройки Firefox"] floating enable
 for_window [title="Настройки Thunderbird"] floating enable
-for_window [class="^Opera$"] border none
+for_window [class="Nautilus"] move workspace 5
+for_window [class="file_progress"] floating enable
 
+
+# hotkeys
+bindsym Print exec gnome-screenshot
+bindsym mod1+Print exec gnome-screenshot -w -B
 
 
 #autostart
-exec --no-startup-id gnome-settings-daemon
-exec --no-startup-id qutim
-exec --no-startup-id skype
-exec --no-startup-id gnome-terminal
 exec --no-startup-id firefox
-exec --no-startup-id thunderbird
-exec --no-startup-id nvidia-settings --load-config-only
-exec feh --bg-scale /home/gaara/Изображения/Below_Clouds_by_kobinho.jpg
+exec gnome-sound-applet
+exec xxkb
+exec nm-applet
