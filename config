@@ -10,6 +10,7 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 force_xinerama yes
+exec pkill ibus-daemon
 set $mod Mod4
 exec setxkbmap "us,ru" ",winkeys" "grp:ctrl_shift_toggle"
 # font for window titles. ISO 10646 = Unicode
@@ -117,17 +118,17 @@ bindsym $mod+Shift+asterisk move workspace 8
 bindsym $mod+Shift+parenleft move workspace 9
 bindsym $mod+Shift+parenright move workspace 10
 
-## Worksapces
-#workspace 1 output xinerama-0
-#workspace 2 output xinerama-0
-#workspace 3 output xinerama-0
-#workspace 4 output xinerama-0
-#workspace 5 output xinerama-0
-#workspace 6 output xinerama-1
-#workspace 7 output xinerama-1
-#workspace 8 output xinerama-1
-#workspace 9 output xinerama-1
-#workspace 10 output xinerama-1
+# Worksapces
+workspace 1 output xinerama-0
+workspace 2 output xinerama-0
+workspace 3 output xinerama-0
+workspace 4 output xinerama-0
+workspace 5 output xinerama-0
+workspace 6 output xinerama-1
+workspace 7 output xinerama-1
+workspace 8 output xinerama-1
+workspace 9 output xinerama-1
+workspace 10 output xinerama-1
 
 # reload the configuration file
 bindsym $mod+Shift+C reload
@@ -198,10 +199,10 @@ for_window [title="^Open Database"] floating enable
 for_window [title="^Hotot$"] floating enable
 for_window [title="^Загрузки$"] floating enable
 for_window [title="^Download$"] floating enable
-for_window [class="Skype"] move workspace 1
-for_window [class="Pidgin"] move workspace 2; border none
-for_window [class="Firefox"] move workspace 3; border none
-for_window [class="Chromium-browser"] border none
+for_window [class="Skype"] move workspace 1; border none
+for_window [class="Telegram"] move workspace 1; border none
+for_window [class="Firefox"] move workspace 6; border none
+for_window [class="Chromium-browser"] move workspace 7; border none
 for_window [class="Gnome-terminal"] border none
 for_window [title="^Mozilla Thunderbird"] move workspace 2
 for_window [title="Настройки Firefox"] floating enable
@@ -217,6 +218,10 @@ bindsym mod1+Print exec gnome-screenshot -w -B
 
 #autostart
 exec --no-startup-id firefox
+exec --no-startup-id unity-settings-daemon
 exec gnome-sound-applet
-exec xxkb
 exec nm-applet
+exec xxkb
+exec feh --bg-scale /usr/share/backgrounds/salcantayperu_by_Life_Nomadic.jpg
+exec ./Telegram/Telegram
+exec skype
