@@ -34,15 +34,15 @@ status.register("mem",
 #
 # This would also display a desktop notification (via dbus) if the percentage
 # goes below 5 percent while discharging. The block will also color RED.
-status.register("battery",
-    format="Battery {status} {percentage:.2f}% {remaining:%E%hh:%Mm}",
-    alert=True,
-    alert_percentage=5,
-    status={
-        "DIS": "↓",
-        "CHR": "↑",
-        "FULL": "=",
-    },)
+#status.register("battery",
+#    format="Battery {status} {percentage:.2f}% {remaining:%E%hh:%Mm}",
+#    alert=True,
+#    alert_percentage=5,
+#    status={
+#        "DIS": "↓",
+#        "CHR": "↑",
+#        "FULL": "=",
+#    },)
 
 # This would look like this:
 # Discharging 6h:51m
@@ -68,9 +68,9 @@ status.register("network",
     interface="eth0",
     format_up="{name}: {v4cidr}",)
 
-status.register("network",
-    interface="wlan0",
-    format_up="wlan0: {v4cidr}",)
+#status.register("network",
+#    interface="wlan0",
+#    format_up="wlan0: {v4cidr}",)
 
 # Has all the options of the normal network and adds some wireless specific things
 # like quality and network names.
@@ -84,7 +84,7 @@ status.register("network",
 
 status.register("disk",
     path="/",
-    format="SSD:{used}/{total}G [{avail}G]",)
+    format="HDD:{used}/{total}G [{avail}G]",)
 
 # Shows weather
 #status.register("weather",
