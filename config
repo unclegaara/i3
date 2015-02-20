@@ -202,13 +202,14 @@ for_window [title="^Download$"] floating enable
 for_window [class="Skype"] move workspace 1; border none
 for_window [class="Telegram"] move workspace 1; border none
 for_window [class="Firefox"] move workspace 6; border none
-for_window [class="Chromium-browser"] move workspace 7; border none
+for_window [class="Chromium-browser"] move workspace 1; border none
 for_window [class="Gnome-terminal"] border none
 for_window [title="^Mozilla Thunderbird"] move workspace 2
 for_window [title="Настройки Firefox"] floating enable
 for_window [title="Настройки Thunderbird"] floating enable
 for_window [class="Nautilus"] move workspace 5
 for_window [class="file_progress"] floating enable
+for_window [class="Seafile-applet"] floating enable
 
 
 # hotkeys
@@ -222,6 +223,6 @@ exec --no-startup-id unity-settings-daemon
 exec gnome-sound-applet
 exec nm-applet
 exec xxkb
-exec feh --bg-scale /usr/share/backgrounds/salcantayperu_by_Life_Nomadic.jpg
+exec feh --bg-scale ~/Изображения/misaka-mikoto_00413040.png
 exec ./Telegram/Telegram
 exec skype

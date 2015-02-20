@@ -77,10 +77,7 @@ status.register("network",
 #    interface="wlan0",
 #    format_up="wlan0: {v4cidr}",)
 
-status.register("network_traffic",)
-
-status.register("network_graph",
-    format="{network_graph} {kbs}KB/s",)
+status.register("network_graph", upper_limit="81920",)
 
 # Has all the options of the normal network and adds some wireless specific things
 # like quality and network names.
